@@ -1,29 +1,30 @@
 // Context
-// import { DataType } from "@context/DataContext.types";
-// import { useData, useDataUpdate } from "@context/DataContext";
+import { ItemType } from "@context/DataContext.types";
+import { useData, useDataUpdate } from "@context/DataContext";
 
 // Mantine
-// import { Button } from "@mantine/core";
+import { Button } from "@mantine/core";
 
 // Molecules
-import HeaderItem from "@molecules/HeaderItem";
+import HeaderItem from "@molecules/HeaderItem/HeaderItem";
+import { HeaderItemTypeEnum } from "@molecules/HeaderItem/HeaderItem.types";
 
 export default function Header() {
-  // const data = useData();
-  // const updateItem = useDataUpdate();
+  const data = useData();
+  const updateItem = useDataUpdate();
 
   return (
     <>
-      <HeaderItem />
-      {/* <h1 className="text-3xl font-bold underline">Header</h1>
-      {data.map((data: DataType) => (
+      <HeaderItem type={HeaderItemTypeEnum.CURRENCY} />
+      <h1 className="text-3xl font-bold underline">Header</h1>
+      {data.items.map((item: ItemType) => (
         <Button
-          onClick={() => updateItem({ label: "Hungry" }, data.id)}
-          key={data.id}
+          onClick={() => updateItem({ label: "Hungry" }, item.id)}
+          key={item.id}
         >
-          Label: {data.label} | id: {data.id}
+          Label: {item.editableItemData.label} | id: {item.id}
         </Button>
-      ))} */}
+      ))}
     </>
   );
 }
