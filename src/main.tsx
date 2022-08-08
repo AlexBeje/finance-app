@@ -3,7 +3,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 
 // Context
-import { ItemsContextProvider } from "@context/ItemsContext";
+import { DataContextProvider } from "@context/DataContext";
 
 // App
 import App from "./App";
@@ -21,9 +21,9 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
       withNormalizeCSS
       theme={{ colorScheme: "dark" }}
     >
-      <ItemsContextProvider>
+      <DataContextProvider>
         <App />
-      </ItemsContextProvider>
+      </DataContextProvider>
     </MantineProvider>
   </React.StrictMode>
 )

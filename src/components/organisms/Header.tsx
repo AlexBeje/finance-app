@@ -1,21 +1,29 @@
 // Context
-import { useItems, useItemUpdate } from "@context/ItemsContext";
+// import { DataType } from "@context/DataContext.types";
+// import { useData, useDataUpdate } from "@context/DataContext";
 
 // Mantine
-import { Button } from "@mantine/core";
+// import { Button } from "@mantine/core";
+
+// Molecules
+import HeaderItem from "@molecules/HeaderItem";
 
 export default function Header() {
-  const items = useItems();
-  const updateItem = useItemUpdate();
+  // const data = useData();
+  // const updateItem = useDataUpdate();
 
   return (
     <>
-      <h1 className="text-3xl font-bold underline">Header</h1>
-      {items.map((item) => (
-        <Button onClick={() => updateItem({ label: "Hungry" }, item.id)}>
-          Label: {item.label} | id: {item.id}
+      <HeaderItem />
+      {/* <h1 className="text-3xl font-bold underline">Header</h1>
+      {data.map((data: DataType) => (
+        <Button
+          onClick={() => updateItem({ label: "Hungry" }, data.id)}
+          key={data.id}
+        >
+          Label: {data.label} | id: {data.id}
         </Button>
-      ))}
+      ))} */}
     </>
   );
 }
