@@ -2,7 +2,8 @@
 import { useData } from "@context/DataContext";
 
 // Atoms
-import Badge from "@atoms/Badge";
+import Container from "@atoms/Container";
+import { ContainerTypeEnum } from "@atoms/Container.types";
 
 // Types
 import { HeaderItemProps, HeaderItemTypeEnum } from "./HeaderItem.types";
@@ -17,14 +18,14 @@ export default function HeaderItem({ type }: HeaderItemProps) {
       case HeaderItemTypeEnum.CURRENCY:
         return handleCurrencyType();
       case HeaderItemTypeEnum.MONTH:
-        return <p>month</p>;
+        return <Container type={ContainerTypeEnum.TOP}>month</Container>;
       case HeaderItemTypeEnum.BUTTONS:
-        return <p>buttons</p>;
+        return <Container type={ContainerTypeEnum.TOP}>buttons</Container>;
     }
   };
 
   const handleCurrencyType = () => {
-    return <Badge>{data.total} €</Badge>;
+    return <Container type={ContainerTypeEnum.TOP}>{data.total} €</Container>;
   };
 
   return handleTypeProp(type);
