@@ -2,11 +2,11 @@
 import React, { useContext, useState } from "react";
 
 // Types
-import { DataType, EditableItemDataType, ItemType } from "./DataContext.types";
+import { DataType } from "./DataContext.types";
 
 // Context constants
 export const DataContext = React.createContext<any>(undefined);
-export const UpdatedDataContext = React.createContext<any>(() => {});
+export const UpdatedDataContext = React.createContext<(arg0: DataType) => {} | void>(() => {});
 
 // Custom Hooks
 export function useData(): DataType {
@@ -23,18 +23,10 @@ import { Database } from "./DataContext.data";
 export const DataContextProvider = ({ children }: any) => {
   const [data, setData] = useState<DataType>(Database);
 
-  function updateData(updatedDataData: EditableItemDataType, id: number) {
+  function updateData(updatedDataData: DataType) {
     const updatedData = {
       ...data,
-      items: data.items.map((item: ItemType) => {
-        if (item.id === id) {
-          return {
-            ...item,
-            editableItemData: { ...item.editableItemData, ...updatedDataData },
-          };
-        }
-        return item;
-      }),
+      ...updatedDataData
     };
     setData(updatedData);
   }
