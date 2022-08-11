@@ -7,7 +7,7 @@ import { ContainerTypeEnum } from "@atoms/Container.types";
 
 // Types
 import { HeaderItemProps, HeaderItemTypeEnum } from "./HeaderItem.types";
-import { Button } from "@mantine/core";
+import { Box } from "@mantine/core";
 
 export default function HeaderItem({ type }: HeaderItemProps) {
   const data = useData();
@@ -37,6 +37,40 @@ export default function HeaderItem({ type }: HeaderItemProps) {
     } else return null;
   };
 
+  const handleButtonType = () => {
+    return (
+      <Container type={ContainerTypeEnum.TOP} noPadding>
+        <Box className="flex justify-around h-full">
+          <Box
+            onClick={substractMonth}
+            className="flex-1 h-full flex items-center justify-center cursor-pointer select-none"
+            sx={(theme) => ({
+              borderRadius: "0 0 0 4px",
+              borderRight: `1px solid ${theme.colors.dark[7]}`,
+              "&:hover": {
+                background: theme.colors.dark[4],
+              },
+            })}
+          >
+            -
+          </Box>
+          <Box
+            onClick={addMonth}
+            className="flex-1 h-full flex items-center justify-center cursor-pointer select-none"
+            sx={(theme) => ({
+              borderRadius: "0 0 4px 0",
+              "&:hover": {
+                background: theme.colors.dark[4],
+              },
+            })}
+          >
+            +
+          </Box>
+        </Box>
+      </Container>
+    );
+  };
+
   const handleCurrencyType = () => {
     return <Container type={ContainerTypeEnum.TOP}>{data.total} €</Container>;
   };
@@ -48,14 +82,7 @@ export default function HeaderItem({ type }: HeaderItemProps) {
       case HeaderItemTypeEnum.MONTH:
         return data.currentMonth ? handleMonthType(data.currentMonth) : null;
       case HeaderItemTypeEnum.BUTTONS:
-        return (
-          <Container type={ContainerTypeEnum.TOP}>
-            <Button onClick={substractMonth}>-</Button>
-            <Button onClick={addMonth}>+</Button>
-          </Container>
-        );
-      default:
-        return null;
+        return handleButtonType();
     }
   };
 
